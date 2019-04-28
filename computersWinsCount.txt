@@ -1,0 +1,3 @@
+Liczba przegranych 0
+Liczba przegranych 1
+Liczba przegranych 2
