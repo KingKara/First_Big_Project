@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class BattleshipListener {
     public static ArrayList<Integer> battleShipInstall(GridPane shipsBoard, GridPane userBoard, ArrayList<Integer> occupiedCells,
-                                                       ArrayList<Integer> shipsList) {
+                                                       ArrayList<Integer> shipsList, ArrayList<Integer> usersBattleship) {
         Node shipToMove = shipsBoard.getChildren().get(0);
         ArrayList<Integer> cells = new ArrayList<>();
         ArrayList<Integer> battleshipList = new ArrayList<>();
@@ -65,7 +65,7 @@ public class BattleshipListener {
             int col = (int) localX / 25;
             int row = (int) localY / 25;
             int index1 = row + (col * 20);
-            if (index1>=0 || index1<400) {
+            if (index1>=0 && index1<400 && event.getSceneY()<575 ) {
                 Node node = userBoard.getChildren().get(index1);
 
                 if (shipToMove.getRotate() == 0) {
@@ -73,7 +73,8 @@ public class BattleshipListener {
 
                     if (occupiedCells.contains(index1) || occupiedCells.contains(index1 + 20) || occupiedCells.contains(index1 + 40)
                             || occupiedCells.contains(index1 + 60) || occupiedCells.contains(index1 + 80) || col > 14) {
-                        shipToMove.setTranslateY(600);
+                        shipToMove.setTranslateY(0);
+                        shipToMove.setTranslateX(0);
                     } else {
                         shipToMove.setTranslateX(node.getLayoutX() + 175);
                         shipToMove.setTranslateY(node.getLayoutY());
@@ -87,7 +88,8 @@ public class BattleshipListener {
 
                     if (occupiedCells.contains(index1) || occupiedCells.contains(index1 + 1) || occupiedCells.contains(index1 + 2)
                             || occupiedCells.contains(index1 + 3) || occupiedCells.contains(index1 + 4) || row > 14) {
-                        shipToMove.setTranslateY(600);
+                        shipToMove.setTranslateY(0);
+                        shipToMove.setTranslateX(0);
                     } else {
                         shipToMove.setTranslateX(node.getLayoutX() + 125);
                         shipToMove.setTranslateY(node.getLayoutY() + 50);
@@ -97,6 +99,9 @@ public class BattleshipListener {
 
                     }
                 }
+            } else {
+                shipToMove.setTranslateY(0);
+                shipToMove.setTranslateX(0);
             }
             for (Integer index : cells) {
                 Rectangle rectangle = (Rectangle) userBoard.getChildren().get(index);
@@ -104,6 +109,7 @@ public class BattleshipListener {
             }
 
             occupiedCells.addAll(cells);
+            usersBattleship.addAll(cells);
             shipsList.addAll(battleshipList);
         });
 

@@ -28,7 +28,9 @@ public class Board {
         return board;
     }
 
-    public void fillComputerBoard(GridPane shipsBoard, ArrayList<Integer> computerShips) {
+    public void fillComputerBoard(GridPane shipsBoard, ArrayList<Integer> computerShips, ArrayList<Integer> computersBattleship, ArrayList<Integer> computersAircraft1,
+                                  ArrayList<Integer> computersAircraft2, ArrayList<Integer> computersSubmarine1, ArrayList<Integer> computersSubmarine2,
+                                  ArrayList<Integer> computersSmallShip1, ArrayList<Integer> computersSmallShip2) {
         Random random = new Random();
         ArrayList<Integer> rotation = new ArrayList<>();
         ArrayList<Integer> computerOccupiedList = new ArrayList<>();
@@ -52,14 +54,14 @@ public class Board {
                     int row = getRow(index);
                     int col = getCol(index);
 
-                    while (col>15) {
+                    while (col > 15) {
                         index = random.nextInt(320);
-                         index2 = index + 20;
-                         index3 = index + 40;
-                         index4 = index + 60;
-                         index5 = index + 80;
+                        index2 = index + 20;
+                        index3 = index + 40;
+                        index4 = index + 60;
+                        index5 = index + 80;
 
-                         row = getRow(index);
+                        row = getRow(index);
                         col = getCol(index);
                     }
 
@@ -76,6 +78,12 @@ public class Board {
                     computerOccupiedList.add(index4);
                     computerOccupiedList.add(index5);
 
+                    computersBattleship.add(index);
+                    computersBattleship.add(index2);
+                    computersBattleship.add(index3);
+                    computersBattleship.add(index4);
+                    computersBattleship.add(index5);
+
                     if (row == 0) {
 
                         computerOccupiedList.add(index + 1);
@@ -84,17 +92,34 @@ public class Board {
                         computerOccupiedList.add(index + 61);
                         computerOccupiedList.add(index + 81);
 
+                        computersBattleship.add(index + 1);
+                        computersBattleship.add(index + 21);
+                        computersBattleship.add(index + 41);
+                        computersBattleship.add(index + 61);
+                        computersBattleship.add(index + 81);
+
                         if (col == 0) {
-                            computerOccupiedList.add(10, index + 100);
-                            computerOccupiedList.add(11, index + 101);
+                            computerOccupiedList.add( index + 100);
+                            computerOccupiedList.add( index + 101);
+
+                            computersBattleship.add( index + 100);
+                            computersBattleship.add( index + 101);
                         } else if (col == 15) {
                             computerOccupiedList.add(index - 20);
                             computerOccupiedList.add(index - 19);
+
+                            computersBattleship.add(index - 20);
+                            computersBattleship.add(index - 19);
                         } else if (col > 0 && col < 15) {
                             computerOccupiedList.add(index - 19);
                             computerOccupiedList.add(index - 20);
                             computerOccupiedList.add(index + 100);
                             computerOccupiedList.add(index + 101);
+
+                            computersBattleship.add(index - 19);
+                            computersBattleship.add(index - 20);
+                            computersBattleship.add(index + 100);
+                            computersBattleship.add(index + 101);
                         }
 
                     } else if (row == 19) {
@@ -103,20 +128,34 @@ public class Board {
                         computerOccupiedList.add(index + 39);
                         computerOccupiedList.add(index + 59);
                         computerOccupiedList.add(index + 79);
-                        if (col == 0) {
 
+                        computersBattleship.add(index - 1);
+                        computersBattleship.add(index + 19);
+                        computersBattleship.add(index + 39);
+                        computersBattleship.add(index + 59);
+                        computersBattleship.add(index + 79);
+                        if (col == 0) {
                             computerOccupiedList.add(index + 100);
                             computerOccupiedList.add(index + 99);
+
+                            computersBattleship.add(index + 100);
+                            computersBattleship.add(index + 99);
                         } else if (col == 15) {
                             computerOccupiedList.add(index - 21);
                             computerOccupiedList.add(index - 20);
 
+                            computersBattleship.add(index - 21);
+                            computersBattleship.add(index - 20);
                         } else if (col > 0 && col < 15) {
                             computerOccupiedList.add(index + 100);
                             computerOccupiedList.add(index + 99);
                             computerOccupiedList.add(index - 21);
                             computerOccupiedList.add(index - 20);
 
+                            computersBattleship.add(index + 100);
+                            computersBattleship.add(index + 99);
+                            computersBattleship.add(index - 21);
+                            computersBattleship.add(index - 20);
                         }
 
                     } else if (row > 0 && row < 19) {
@@ -131,14 +170,33 @@ public class Board {
                         computerOccupiedList.add(index + 79);
                         computerOccupiedList.add(index + 81);
 
+                        computersBattleship.add(index - 1);
+                        computersBattleship.add(index + 1);
+                        computersBattleship.add(index + 19);
+                        computersBattleship.add(index + 21);
+                        computersBattleship.add(index + 39);
+                        computersBattleship.add(index + 41);
+                        computersBattleship.add(index + 59);
+                        computersBattleship.add(index + 61);
+                        computersBattleship.add(index + 79);
+                        computersBattleship.add(index + 81);
+
                         if (col == 0) {
                             computerOccupiedList.add(index + 99);
                             computerOccupiedList.add(index + 100);
                             computerOccupiedList.add(index + 101);
+
+                            computersBattleship.add(index + 99);
+                            computersBattleship.add(index + 100);
+                            computersBattleship.add(index + 101);
                         } else if (col == 15) {
                             computerOccupiedList.add(index - 19);
                             computerOccupiedList.add(index - 20);
                             computerOccupiedList.add(index - 21);
+
+                            computersBattleship.add(index - 19);
+                            computersBattleship.add(index - 20);
+                            computersBattleship.add(index - 21);
                         } else if (col > 0 && col < 15) {
                             computerOccupiedList.add(index + 99);
                             computerOccupiedList.add(index + 100);
@@ -146,6 +204,13 @@ public class Board {
                             computerOccupiedList.add(index - 19);
                             computerOccupiedList.add(index - 20);
                             computerOccupiedList.add(index - 21);
+
+                            computersBattleship.add(index + 99);
+                            computersBattleship.add(index + 100);
+                            computersBattleship.add(index + 101);
+                            computersBattleship.add(index - 19);
+                            computersBattleship.add(index - 20);
+                            computersBattleship.add(index - 21);
                         }
                     }
 
@@ -159,7 +224,7 @@ public class Board {
                     int row = getRow(index);
                     int col = getCol(index);
 
-                    while (row>15) {
+                    while (row > 15) {
                         index = random.nextInt(320);
                         index2 = index + 20;
                         index3 = index + 40;
@@ -182,6 +247,12 @@ public class Board {
                     computerOccupiedList.add(index4);
                     computerOccupiedList.add(index5);
 
+                    computersBattleship.add(index);
+                    computersBattleship.add(index2);
+                    computersBattleship.add(index3);
+                    computersBattleship.add(index4);
+                    computersBattleship.add(index5);
+
 
                     if (col == 0) {
 
@@ -191,17 +262,34 @@ public class Board {
                         computerOccupiedList.add(index + 23);
                         computerOccupiedList.add(index + 24);
 
+                        computersBattleship.add(index + 20);
+                        computersBattleship.add(index + 21);
+                        computersBattleship.add(index + 22);
+                        computersBattleship.add(index + 23);
+                        computersBattleship.add(index + 24);
+
                         if (row == 0) {
                             computerOccupiedList.add(index + 5);
                             computerOccupiedList.add(index + 25);
+
+                            computersBattleship.add(index + 5);
+                            computersBattleship.add(index + 25);
                         } else if (row == 15) {
                             computerOccupiedList.add(index - 1);
                             computerOccupiedList.add(index + 19);
+
+                            computersBattleship.add(index - 1);
+                            computersBattleship.add(index + 19);
                         } else if (row > 0 && row < 15) {
                             computerOccupiedList.add(index + 5);
                             computerOccupiedList.add(index + 25);
                             computerOccupiedList.add(index - 1);
                             computerOccupiedList.add(index + 19);
+
+                            computersBattleship.add(index + 5);
+                            computersBattleship.add(index + 25);
+                            computersBattleship.add(index - 1);
+                            computersBattleship.add(index + 19);
                         }
 
                     } else if (col == 19) {
@@ -210,20 +298,34 @@ public class Board {
                         computerOccupiedList.add(index - 18);
                         computerOccupiedList.add(index - 17);
                         computerOccupiedList.add(index - 16);
-                        if (row == 0) {
 
+                        computersBattleship.add(index - 20);
+                        computersBattleship.add(index - 19);
+                        computersBattleship.add(index - 18);
+                        computersBattleship.add(index - 17);
+                        computersBattleship.add(index - 16);
+                        if (row == 0) {
                             computerOccupiedList.add(index + 5);
                             computerOccupiedList.add(index - 15);
+
+                            computersBattleship.add(index + 5);
+                            computersBattleship.add(index - 15);
                         } else if (row == 15) {
                             computerOccupiedList.add(index - 1);
                             computerOccupiedList.add(index - 21);
 
+                            computersBattleship.add(index - 1);
+                            computersBattleship.add(index - 21);
                         } else if (row > 0 && row < 15) {
                             computerOccupiedList.add(index + 5);
                             computerOccupiedList.add(index - 15);
                             computerOccupiedList.add(index - 1);
                             computerOccupiedList.add(index - 21);
 
+                            computersBattleship.add(index + 5);
+                            computersBattleship.add(index - 15);
+                            computersBattleship.add(index - 1);
+                            computersBattleship.add(index - 21);
                         }
 
                     } else if (col > 0 && col < 19) {
@@ -238,14 +340,33 @@ public class Board {
                         computerOccupiedList.add(index - 16);
                         computerOccupiedList.add(index + 24);
 
+                        computersBattleship.add(index - 20);
+                        computersBattleship.add(index + 20);
+                        computersBattleship.add(index - 19);
+                        computersBattleship.add(index + 21);
+                        computersBattleship.add(index - 18);
+                        computersBattleship.add(index + 22);
+                        computersBattleship.add(index - 17);
+                        computersBattleship.add(index + 23);
+                        computersBattleship.add(index - 16);
+                        computersBattleship.add(index + 24);
+
                         if (row == 0) {
                             computerOccupiedList.add(index + 5);
                             computerOccupiedList.add(index - 15);
                             computerOccupiedList.add(index + 25);
+
+                            computersBattleship.add(index + 5);
+                            computersBattleship.add(index - 15);
+                            computersBattleship.add(index + 25);
                         } else if (row == 15) {
                             computerOccupiedList.add(index - 1);
                             computerOccupiedList.add(index - 21);
                             computerOccupiedList.add(index + 19);
+
+                            computersBattleship.add(index - 1);
+                            computersBattleship.add(index - 21);
+                            computersBattleship.add(index + 19);
                         } else if (row > 0 && row < 15) {
                             computerOccupiedList.add(index + 5);
                             computerOccupiedList.add(index - 15);
@@ -253,6 +374,13 @@ public class Board {
                             computerOccupiedList.add(index - 1);
                             computerOccupiedList.add(index - 21);
                             computerOccupiedList.add(index + 19);
+
+                            computersBattleship.add(index + 5);
+                            computersBattleship.add(index - 15);
+                            computersBattleship.add(index + 25);
+                            computersBattleship.add(index - 1);
+                            computersBattleship.add(index - 21);
+                            computersBattleship.add(index + 19);
                         }
                     }
 
@@ -268,12 +396,12 @@ public class Board {
                     int col = getCol(index);
 
                     while (computerOccupiedList.contains(index) || computerOccupiedList.contains(index2) || computerOccupiedList.contains(index3) ||
-                            computerOccupiedList.contains(index4) || col>16) {
+                            computerOccupiedList.contains(index4) || col > 16) {
                         index = random.nextInt(340);
                         index2 = index + 20;
                         index3 = index + 40;
                         index4 = index + 60;
-                       row = getRow(index);
+                        row = getRow(index);
                         col = getCol(index);
                     }
 
@@ -287,6 +415,18 @@ public class Board {
                     computerOccupiedList.add(index3);
                     computerOccupiedList.add(index4);
 
+                    if (shipsBoard.getChildren().indexOf(node) == 1) {
+                        computersAircraft1.add(index);
+                        computersAircraft1.add(index2);
+                        computersAircraft1.add(index3);
+                        computersAircraft1.add(index4);
+                    } else if (shipsBoard.getChildren().indexOf(node) == 2) {
+                        computersAircraft2.add(index);
+                        computersAircraft2.add(index2);
+                        computersAircraft2.add(index3);
+                        computersAircraft2.add(index4);
+                    }
+
                     if (row == 0) {
 
                         computerOccupiedList.add(index + 1);
@@ -294,17 +434,58 @@ public class Board {
                         computerOccupiedList.add(index + 41);
                         computerOccupiedList.add(index + 61);
 
+
+
                         if (col == 0) {
                             computerOccupiedList.add(index + 80);
                             computerOccupiedList.add(index + 81);
+
+                            if (shipsBoard.getChildren().indexOf(node) == 1) {
+                                computersAircraft1.add(index + 80);
+                                computersAircraft1.add(index + 81);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 2) {
+                                computersAircraft2.add(index + 80);
+                                computersAircraft2.add(index + 81);
+                            }
                         } else if (col == 16) {
                             computerOccupiedList.add(index - 20);
                             computerOccupiedList.add(index - 19);
+
+                            if (shipsBoard.getChildren().indexOf(node) == 1) {
+                                computersAircraft1.add(index - 20);
+                                computersAircraft1.add(index - 19);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 2) {
+                                computersAircraft2.add(index - 20);
+                                computersAircraft2.add(index - 19);
+                            }
                         } else if (col > 0 && col < 16) {
                             computerOccupiedList.add(index - 19);
                             computerOccupiedList.add(index - 20);
                             computerOccupiedList.add(index + 80);
                             computerOccupiedList.add(index + 81);
+
+                            if (shipsBoard.getChildren().indexOf(node) == 1) {
+                                computersAircraft1.add(index - 19);
+                                computersAircraft1.add(index - 20);
+                                computersAircraft1.add(index + 80);
+                                computersAircraft1.add(index + 81);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 2) {
+                                computersAircraft2.add(index - 19);
+                                computersAircraft2.add(index - 20);
+                                computersAircraft2.add(index + 80);
+                                computersAircraft2.add(index + 81);
+                            }
+                        }
+                        if (shipsBoard.getChildren().indexOf(node) == 1) {
+                            computersAircraft1.add(index + 1);
+                            computersAircraft1.add(index + 21);
+                            computersAircraft1.add(index + 41);
+                            computersAircraft1.add(index + 61);
+                        } else if (shipsBoard.getChildren().indexOf(node) == 2) {
+                            computersAircraft2.add(index + 1);
+                            computersAircraft2.add(index + 21);
+                            computersAircraft2.add(index + 41);
+                            computersAircraft2.add(index + 61);
                         }
 
                     } else if (row == 19) {
@@ -312,12 +493,30 @@ public class Board {
                         computerOccupiedList.add(index + 19);
                         computerOccupiedList.add(index + 39);
                         computerOccupiedList.add(index + 59);
+
+
                         if (col == 0) {
                             computerOccupiedList.add(index + 80);
                             computerOccupiedList.add(index + 79);
+
+                            if (shipsBoard.getChildren().indexOf(node) == 1) {
+                                computersAircraft1.add(index + 80);
+                                computersAircraft1.add(index + 79);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 2) {
+                                computersAircraft2.add(index + 80);
+                                computersAircraft2.add(index + 79);
+                            }
                         } else if (col == 16) {
                             computerOccupiedList.add(index - 21);
                             computerOccupiedList.add(index - 20);
+
+                            if (shipsBoard.getChildren().indexOf(node) == 1) {
+                                computersAircraft1.add(index - 21);
+                                computersAircraft1.add(index - 20);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 2) {
+                                computersAircraft2.add(index - 21);
+                                computersAircraft2.add(index - 20);
+                            }
 
                         } else if (col > 0 && col < 16) {
                             computerOccupiedList.add(index + 80);
@@ -325,6 +524,28 @@ public class Board {
                             computerOccupiedList.add(index - 21);
                             computerOccupiedList.add(index - 20);
 
+                            if (shipsBoard.getChildren().indexOf(node) == 1) {
+                                computersAircraft1.add(index + 80);
+                                computersAircraft1.add(index + 79);
+                                computersAircraft1.add(index - 21);
+                                computersAircraft1.add(index - 20);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 2) {
+                                computersAircraft2.add(index + 80);
+                                computersAircraft2.add(index + 79);
+                                computersAircraft2.add(index - 21);
+                                computersAircraft2.add(index - 20);
+                            }
+                        }
+                        if (shipsBoard.getChildren().indexOf(node) == 1) {
+                            computersAircraft1.add(index - 1);
+                            computersAircraft1.add(index + 19);
+                            computersAircraft1.add(index + 39);
+                            computersAircraft1.add(index + 59);
+                        } else if (shipsBoard.getChildren().indexOf(node) == 2) {
+                            computersAircraft2.add(index - 1);
+                            computersAircraft2.add(index + 19);
+                            computersAircraft2.add(index + 39);
+                            computersAircraft2.add(index + 59);
                         }
 
                     } else if (row > 0 && row < 19) {
@@ -337,14 +558,38 @@ public class Board {
                         computerOccupiedList.add(index + 59);
                         computerOccupiedList.add(index + 61);
 
+
+
                         if (col == 0) {
                             computerOccupiedList.add(index + 79);
                             computerOccupiedList.add(index + 80);
                             computerOccupiedList.add(index + 81);
+
+                            if (shipsBoard.getChildren().indexOf(node) == 1) {
+                                computersAircraft1.add(index + 79);
+                                computersAircraft1.add(index + 80);
+                                computersAircraft1.add(index + 81);
+
+                            } else if (shipsBoard.getChildren().indexOf(node) == 2) {
+                                computersAircraft2.add(index + 79);
+                                computersAircraft2.add(index + 80);
+                                computersAircraft2.add(index + 81);
+
+                            }
                         } else if (col == 16) {
                             computerOccupiedList.add(index - 19);
                             computerOccupiedList.add(index - 20);
                             computerOccupiedList.add(index - 21);
+
+                            if (shipsBoard.getChildren().indexOf(node) == 1) {
+                                computersAircraft1.add(index - 19);
+                                computersAircraft1.add(index - 20);
+                                computersAircraft1.add(index - 21);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 2) {
+                                computersAircraft2.add(index - 19);
+                                computersAircraft2.add(index - 20);
+                                computersAircraft2.add(index - 21);
+                            }
                         } else if (col > 0 && col < 16) {
                             computerOccupiedList.add(index + 79);
                             computerOccupiedList.add(index + 80);
@@ -352,6 +597,41 @@ public class Board {
                             computerOccupiedList.add(index - 19);
                             computerOccupiedList.add(index - 20);
                             computerOccupiedList.add(index - 21);
+
+                            if (shipsBoard.getChildren().indexOf(node) == 1) {
+                                computersAircraft1.add(index + 79);
+                                computersAircraft1.add(index + 80);
+                                computersAircraft1.add(index + 81);
+                                computersAircraft1.add(index - 19);
+                                computersAircraft1.add(index - 20);
+                                computersAircraft1.add(index - 21);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 2) {
+                                computersAircraft2.add(index + 79);
+                                computersAircraft2.add(index + 80);
+                                computersAircraft2.add(index + 81);
+                                computersAircraft2.add(index - 19);
+                                computersAircraft2.add(index - 20);
+                                computersAircraft2.add(index - 21);
+                            }
+                        }
+                        if (shipsBoard.getChildren().indexOf(node) == 1) {
+                            computersAircraft1.add(index - 1);
+                            computersAircraft1.add(index + 1);
+                            computersAircraft1.add(index + 19);
+                            computersAircraft1.add(index + 21);
+                            computersAircraft1.add(index + 39);
+                            computersAircraft1.add(index + 41);
+                            computersAircraft1.add(index + 59);
+                            computersAircraft1.add(index + 61);
+                        } else if (shipsBoard.getChildren().indexOf(node) == 2) {
+                            computersAircraft2.add(index - 1);
+                            computersAircraft2.add(index + 1);
+                            computersAircraft2.add(index + 19);
+                            computersAircraft2.add(index + 21);
+                            computersAircraft2.add(index + 39);
+                            computersAircraft2.add(index + 41);
+                            computersAircraft2.add(index + 59);
+                            computersAircraft2.add(index + 61);
                         }
                     }
                 } else if (rotate == 90) {
@@ -363,7 +643,7 @@ public class Board {
                     int col = getCol(index);
 
                     while (computerOccupiedList.contains(index) || computerOccupiedList.contains(index2) || computerOccupiedList.contains(index3) ||
-                            computerOccupiedList.contains(index4)||row>16) {
+                            computerOccupiedList.contains(index4) || row > 16) {
                         index = random.nextInt(340);
                         index2 = index + 1;
                         index3 = index + 2;
@@ -383,6 +663,18 @@ public class Board {
                     computerOccupiedList.add(index3);
                     computerOccupiedList.add(index4);
 
+                    if (shipsBoard.getChildren().indexOf(node) == 1) {
+                        computersAircraft1.add(index);
+                        computersAircraft1.add(index2);
+                        computersAircraft1.add(index3);
+                        computersAircraft1.add(index4);
+                    } else if (shipsBoard.getChildren().indexOf(node) == 2) {
+                        computersAircraft2.add(index);
+                        computersAircraft2.add(index2);
+                        computersAircraft2.add(index3);
+                        computersAircraft2.add(index4);
+                    }
+
                     if (col == 0) {
 
                         computerOccupiedList.add(index + 20);
@@ -394,14 +686,54 @@ public class Board {
                         if (row == 0) {
                             computerOccupiedList.add(index + 4);
                             computerOccupiedList.add(index + 24);
+
+                            if (shipsBoard.getChildren().indexOf(node) == 1) {
+                                computersAircraft1.add(index + 4);
+                                computersAircraft1.add(index + 24);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 2) {
+                                computersAircraft2.add(index + 4);
+                                computersAircraft2.add(index + 24);
+                            }
                         } else if (row == 16) {
                             computerOccupiedList.add(index - 1);
                             computerOccupiedList.add(index + 19);
+
+                            if (shipsBoard.getChildren().indexOf(node) == 1) {
+                                computersAircraft1.add(index - 1);
+                                computersAircraft1.add(index + 19);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 2) {
+                                computersAircraft2.add(index - 1);
+                                computersAircraft2.add(index + 19);
+                            }
                         } else if (row > 0 && row < 16) {
                             computerOccupiedList.add(index + 4);
                             computerOccupiedList.add(index + 24);
                             computerOccupiedList.add(index - 1);
                             computerOccupiedList.add(index + 19);
+
+                            if (shipsBoard.getChildren().indexOf(node) == 1) {
+                                computersAircraft1.add(index + 4);
+                                computersAircraft1.add(index + 24);
+                                computersAircraft1.add(index - 1);
+                                computersAircraft1.add(index + 19);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 2) {
+                                computersAircraft2.add(index + 4);
+                                computersAircraft2.add(index + 24);
+                                computersAircraft2.add(index - 1);
+                                computersAircraft2.add(index + 19);
+                            }
+                        }
+
+                        if (shipsBoard.getChildren().indexOf(node) == 1) {
+                            computersAircraft1.add(index + 20);
+                            computersAircraft1.add(index + 21);
+                            computersAircraft1.add(index + 22);
+                            computersAircraft1.add(index + 23);
+                        } else if (shipsBoard.getChildren().indexOf(node) == 2) {
+                            computersAircraft2.add(index + 20);
+                            computersAircraft2.add(index + 21);
+                            computersAircraft2.add(index + 22);
+                            computersAircraft2.add(index + 23);
                         }
 
                     } else if (col == 19) {
@@ -409,19 +741,58 @@ public class Board {
                         computerOccupiedList.add(index - 19);
                         computerOccupiedList.add(index - 18);
                         computerOccupiedList.add(index - 17);
+
+
                         if (row == 0) {
                             computerOccupiedList.add(index + 4);
                             computerOccupiedList.add(index - 16);
+
+                            if (shipsBoard.getChildren().indexOf(node) == 1) {
+                                computersAircraft1.add(index + 4);
+                                computersAircraft1.add(index - 16);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 2) {
+                                computersAircraft2.add(index + 4);
+                                computersAircraft2.add(index - 16);
+                            }
                         } else if (row == 16) {
                             computerOccupiedList.add(index - 1);
                             computerOccupiedList.add(index - 21);
 
+                            if (shipsBoard.getChildren().indexOf(node) == 1) {
+                                computersAircraft1.add(index - 1);
+                                computersAircraft1.add(index - 21);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 2) {
+                                computersAircraft2.add(index - 1);
+                                computersAircraft2.add(index - 21);
+                            }
                         } else if (row > 0 && row < 16) {
                             computerOccupiedList.add(index + 4);
                             computerOccupiedList.add(index - 16);
                             computerOccupiedList.add(index - 1);
                             computerOccupiedList.add(index - 21);
 
+                            if (shipsBoard.getChildren().indexOf(node) == 1) {
+                                computersAircraft1.add(index + 4);
+                                computersAircraft1.add(index - 16);
+                                computersAircraft1.add(index - 1);
+                                computersAircraft1.add(index - 21);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 2) {
+                                computersAircraft2.add(index + 4);
+                                computersAircraft2.add(index - 16);
+                                computersAircraft2.add(index - 1);
+                                computersAircraft2.add(index - 21);
+                            }
+                        }
+                        if (shipsBoard.getChildren().indexOf(node) == 1) {
+                            computersAircraft1.add(index - 20);
+                            computersAircraft1.add(index - 19);
+                            computersAircraft1.add(index - 18);
+                            computersAircraft1.add(index - 17);
+                        } else if (shipsBoard.getChildren().indexOf(node) == 2) {
+                            computersAircraft2.add(index - 20);
+                            computersAircraft2.add(index - 19);
+                            computersAircraft2.add(index - 18);
+                            computersAircraft2.add(index - 17);
                         }
 
                     } else if (col > 0 && col < 19) {
@@ -434,15 +805,34 @@ public class Board {
                         computerOccupiedList.add(index - 17);
                         computerOccupiedList.add(index + 23);
 
-
                         if (row == 0) {
                             computerOccupiedList.add(index + 4);
                             computerOccupiedList.add(index - 16);
                             computerOccupiedList.add(index + 24);
+
+                            if (shipsBoard.getChildren().indexOf(node) == 1) {
+                                computersAircraft1.add(index + 4);
+                                computersAircraft1.add(index - 16);
+                                computersAircraft1.add(index + 24);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 2) {
+                                computersAircraft2.add(index + 4);
+                                computersAircraft2.add(index - 16);
+                                computersAircraft2.add(index + 24);
+                            }
                         } else if (row == 16) {
                             computerOccupiedList.add(index - 1);
                             computerOccupiedList.add(index - 21);
                             computerOccupiedList.add(index + 19);
+
+                            if (shipsBoard.getChildren().indexOf(node) == 1) {
+                                computersAircraft1.add(index - 1);
+                                computersAircraft1.add(index - 21);
+                                computersAircraft1.add(index + 19);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 2) {
+                                computersAircraft2.add(index - 1);
+                                computersAircraft2.add(index - 21);
+                                computersAircraft2.add(index + 19);
+                            }
                         } else if (row > 0 && row < 16) {
                             computerOccupiedList.add(index + 4);
                             computerOccupiedList.add(index - 16);
@@ -451,7 +841,40 @@ public class Board {
                             computerOccupiedList.add(index - 21);
                             computerOccupiedList.add(index + 19);
 
-
+                            if (shipsBoard.getChildren().indexOf(node) == 1) {
+                                computersAircraft1.add(index + 4);
+                                computersAircraft1.add(index - 16);
+                                computersAircraft1.add(index + 24);
+                                computersAircraft1.add(index - 1);
+                                computersAircraft1.add(index - 21);
+                                computersAircraft1.add(index + 19);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 2) {
+                                computersAircraft2.add(index + 4);
+                                computersAircraft2.add(index - 16);
+                                computersAircraft2.add(index + 24);
+                                computersAircraft2.add(index - 1);
+                                computersAircraft2.add(index - 21);
+                                computersAircraft2.add(index + 19);
+                            }
+                        }
+                        if (shipsBoard.getChildren().indexOf(node) == 1) {
+                            computersAircraft1.add(index - 20);
+                            computersAircraft1.add(index + 20);
+                            computersAircraft1.add(index - 19);
+                            computersAircraft1.add(index + 21);
+                            computersAircraft1.add(index - 18);
+                            computersAircraft1.add(index + 22);
+                            computersAircraft1.add(index - 17);
+                            computersAircraft1.add(index + 23);
+                        } else if (shipsBoard.getChildren().indexOf(node) == 2) {
+                            computersAircraft2.add(index - 20);
+                            computersAircraft2.add(index + 20);
+                            computersAircraft2.add(index - 19);
+                            computersAircraft2.add(index + 21);
+                            computersAircraft2.add(index - 18);
+                            computersAircraft2.add(index + 22);
+                            computersAircraft2.add(index - 17);
+                            computersAircraft2.add(index + 23);
                         }
                     }
                 }
@@ -464,7 +887,7 @@ public class Board {
                     int row = getRow(index);
                     int col = getCol(index);
 
-                    while (computerOccupiedList.contains(index) || computerOccupiedList.contains(index2) || computerOccupiedList.contains(index3)|| col>17) {
+                    while (computerOccupiedList.contains(index) || computerOccupiedList.contains(index2) || computerOccupiedList.contains(index3) || col > 17) {
                         index = random.nextInt(340);
                         index2 = index + 20;
                         index3 = index + 40;
@@ -481,23 +904,72 @@ public class Board {
                     computerOccupiedList.add(index2);
                     computerOccupiedList.add(index3);
 
+                    if (shipsBoard.getChildren().indexOf(node) == 3) {
+                        computersSubmarine1.add(index);
+                        computersSubmarine1.add(index2);
+                        computersSubmarine1.add(index3);
+                    } else if (shipsBoard.getChildren().indexOf(node) == 4) {
+                        computersSubmarine2.add(index);
+                        computersSubmarine2.add(index2);
+                        computersSubmarine2.add(index3);
+                    }
+
                     if (row == 0) {
 
                         computerOccupiedList.add(index + 1);
                         computerOccupiedList.add(index + 21);
                         computerOccupiedList.add(index + 41);
 
+
                         if (col == 0) {
                             computerOccupiedList.add(index + 60);
                             computerOccupiedList.add(index + 61);
+
+                            if (shipsBoard.getChildren().indexOf(node) == 3) {
+                                computersSubmarine1.add(index + 60);
+                                computersSubmarine1.add(index + 61);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 4) {
+                                computersSubmarine2.add(index + 60);
+                                computersSubmarine2.add(index + 61);
+                            }
                         } else if (col == 17) {
                             computerOccupiedList.add(index - 20);
                             computerOccupiedList.add(index - 19);
+
+                            if (shipsBoard.getChildren().indexOf(node) == 3) {
+                                computersSubmarine1.add(index - 20);
+                                computersSubmarine1.add(index - 19);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 4) {
+                                computersSubmarine2.add(index - 20);
+                                computersSubmarine2.add(index - 19);
+                            }
                         } else if (col > 0 && col < 17) {
                             computerOccupiedList.add(index - 19);
                             computerOccupiedList.add(index - 20);
                             computerOccupiedList.add(index + 60);
                             computerOccupiedList.add(index + 61);
+
+                            if (shipsBoard.getChildren().indexOf(node) == 3) {
+                                computersSubmarine1.add(index - 19);
+                                computersSubmarine1.add(index - 20);
+                                computersSubmarine1.add(index + 60);
+                                computersSubmarine1.add(index + 61);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 4) {
+                                computersSubmarine2.add(index - 19);
+                                computersSubmarine2.add(index - 20);
+                                computersSubmarine2.add(index + 60);
+                                computersSubmarine2.add(index + 61);
+                            }
+                        }
+
+                        if (shipsBoard.getChildren().indexOf(node) == 3) {
+                            computersSubmarine1.add(index + 1);
+                            computersSubmarine1.add(index + 21);
+                            computersSubmarine1.add(index + 41);
+                        } else if (shipsBoard.getChildren().indexOf(node) == 4) {
+                            computersSubmarine2.add(index + 1);
+                            computersSubmarine2.add(index + 21);
+                            computersSubmarine2.add(index + 41);
                         }
 
                     } else if (row == 19) {
@@ -505,12 +977,30 @@ public class Board {
                         computerOccupiedList.add(index + 19);
                         computerOccupiedList.add(index + 39);
 
+
+
                         if (col == 0) {
                             computerOccupiedList.add(index + 60);
                             computerOccupiedList.add(index + 59);
+
+                            if (shipsBoard.getChildren().indexOf(node) == 3) {
+                                computersSubmarine1.add(index + 60);
+                                computersSubmarine1.add(index + 59);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 4) {
+                                computersSubmarine2.add(index + 60);
+                                computersSubmarine2.add(index + 59);
+                            }
                         } else if (col == 17) {
                             computerOccupiedList.add(index - 21);
                             computerOccupiedList.add(index - 20);
+
+                            if (shipsBoard.getChildren().indexOf(node) == 3) {
+                                computersSubmarine1.add(index - 21);
+                                computersSubmarine1.add(index - 20);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 4) {
+                                computersSubmarine2.add(index - 21);
+                                computersSubmarine2.add(index - 20);
+                            }
 
                         } else if (col > 0 && col < 17) {
                             computerOccupiedList.add(index + 60);
@@ -518,6 +1008,27 @@ public class Board {
                             computerOccupiedList.add(index - 21);
                             computerOccupiedList.add(index - 20);
 
+                            if (shipsBoard.getChildren().indexOf(node) == 3) {
+                                computersSubmarine1.add(index + 60);
+                                computersSubmarine1.add(index + 59);
+                                computersSubmarine1.add(index - 21);
+                                computersSubmarine1.add(index - 20);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 4) {
+                                computersSubmarine2.add(index + 60);
+                                computersSubmarine2.add(index + 59);
+                                computersSubmarine2.add(index - 21);
+                                computersSubmarine2.add(index - 20);
+                            }
+
+                        }
+                        if (shipsBoard.getChildren().indexOf(node) == 3) {
+                            computersSubmarine1.add(index - 1);
+                            computersSubmarine1.add(index + 19);
+                            computersSubmarine1.add(index + 39);
+                        } else if (shipsBoard.getChildren().indexOf(node) == 4) {
+                            computersSubmarine2.add(index - 1);
+                            computersSubmarine2.add(index + 19);
+                            computersSubmarine2.add(index + 39);
                         }
 
                     } else if (row > 0 && row < 19) {
@@ -529,14 +1040,36 @@ public class Board {
                         computerOccupiedList.add(index + 41);
 
 
+
                         if (col == 0) {
                             computerOccupiedList.add(index + 59);
                             computerOccupiedList.add(index + 60);
                             computerOccupiedList.add(index + 61);
+
+                            if (shipsBoard.getChildren().indexOf(node) == 3) {
+                                computersSubmarine1.add(index + 60);
+                                computersSubmarine1.add(index + 59);
+                                computersSubmarine1.add(index + 61);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 4) {
+                                computersSubmarine2.add(index + 60);
+                                computersSubmarine2.add(index + 59);
+                                computersSubmarine2.add(index + 61);
+                            }
+
                         } else if (col == 17) {
                             computerOccupiedList.add(index - 19);
                             computerOccupiedList.add(index - 20);
                             computerOccupiedList.add(index - 21);
+
+                            if (shipsBoard.getChildren().indexOf(node) == 3) {
+                                computersSubmarine1.add(index - 19);
+                                computersSubmarine1.add(index - 20);
+                                computersSubmarine1.add(index - 21);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 4) {
+                                computersSubmarine2.add(index - 19);
+                                computersSubmarine2.add(index - 20);
+                                computersSubmarine2.add(index - 21);
+                            }
                         } else if (col > 0 && col < 17) {
                             computerOccupiedList.add(index + 59);
                             computerOccupiedList.add(index + 60);
@@ -544,7 +1077,39 @@ public class Board {
                             computerOccupiedList.add(index - 19);
                             computerOccupiedList.add(index - 20);
                             computerOccupiedList.add(index - 21);
+
+                            if (shipsBoard.getChildren().indexOf(node) == 3) {
+                                computersSubmarine1.add(index + 59);
+                                computersSubmarine1.add(index + 60);
+                                computersSubmarine1.add(index + 61);
+                                computersSubmarine1.add(index - 19);
+                                computersSubmarine1.add(index - 20);
+                                computersSubmarine1.add(index - 21);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 4) {
+                                computersSubmarine2.add(index + 59);
+                                computersSubmarine2.add(index + 60);
+                                computersSubmarine2.add(index + 61);
+                                computersSubmarine2.add(index - 19);
+                                computersSubmarine2.add(index - 20);
+                                computersSubmarine2.add(index - 21);
+                            }
                         }
+                        if (shipsBoard.getChildren().indexOf(node) == 3) {
+                            computersSubmarine1.add(index - 1);
+                            computersSubmarine1.add(index + 1);
+                            computersSubmarine1.add(index + 19);
+                            computersSubmarine1.add(index + 21);
+                            computersSubmarine1.add(index + 39);
+                            computersSubmarine1.add(index + 41);
+                        } else if (shipsBoard.getChildren().indexOf(node) == 4) {
+                            computersSubmarine2.add(index - 1);
+                            computersSubmarine2.add(index + 1);
+                            computersSubmarine2.add(index + 19);
+                            computersSubmarine2.add(index + 21);
+                            computersSubmarine2.add(index + 39);
+                            computersSubmarine2.add(index + 41);
+                        }
+
                     }
                 } else if (rotate == 90) {
                     index = random.nextInt(398);
@@ -553,7 +1118,7 @@ public class Board {
                     int row = getRow(index);
                     int col = getCol(index);
 
-                    while (computerOccupiedList.contains(index) || computerOccupiedList.contains(index2) || computerOccupiedList.contains(index3)|| row>17) {
+                    while (computerOccupiedList.contains(index) || computerOccupiedList.contains(index2) || computerOccupiedList.contains(index3) || row > 17) {
                         index = random.nextInt(340);
                         index2 = index + 1;
                         index3 = index + 2;
@@ -571,6 +1136,16 @@ public class Board {
                     computerOccupiedList.add(index2);
                     computerOccupiedList.add(index3);
 
+                    if (shipsBoard.getChildren().indexOf(node) == 3) {
+                        computersSubmarine1.add(index);
+                        computersSubmarine1.add(index2);
+                        computersSubmarine1.add(index3);
+                    } else if (shipsBoard.getChildren().indexOf(node) == 4) {
+                        computersSubmarine2.add(index);
+                        computersSubmarine2.add(index2);
+                        computersSubmarine2.add(index3);
+                    }
+
 
                     if (col == 0) {
 
@@ -582,26 +1157,86 @@ public class Board {
                         if (row == 0) {
                             computerOccupiedList.add(index + 3);
                             computerOccupiedList.add(index + 23);
+
+                            if (shipsBoard.getChildren().indexOf(node) == 3) {
+                                computersSubmarine1.add(index + 3);
+                                computersSubmarine1.add(index + 23);
+
+                            } else if (shipsBoard.getChildren().indexOf(node) == 4) {
+                                computersSubmarine2.add(index + 3);
+                                computersSubmarine2.add(index + 23);
+
+                            }
                         } else if (row == 17) {
                             computerOccupiedList.add(index - 1);
                             computerOccupiedList.add(index + 19);
+
+                            if (shipsBoard.getChildren().indexOf(node) == 3) {
+                                computersSubmarine1.add(index - 1);
+                                computersSubmarine1.add(index + 19);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 4) {
+                                computersSubmarine2.add(index - 1);
+                                computersSubmarine2.add(index + 19);
+                            }
                         } else if (row > 0 && row < 17) {
                             computerOccupiedList.add(index + 3);
                             computerOccupiedList.add(index + 23);
                             computerOccupiedList.add(index - 1);
                             computerOccupiedList.add(index + 19);
+
+                            if (shipsBoard.getChildren().indexOf(node) == 3) {
+                                computersSubmarine1.add(index + 3);
+                                computersSubmarine1.add(index + 23);
+                                computersSubmarine1.add(index - 1);
+                                computersSubmarine1.add(index + 19);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 4) {
+                                computersSubmarine2.add(index + 3);
+                                computersSubmarine2.add(index + 23);
+                                computersSubmarine2.add(index - 1);
+                                computersSubmarine2.add(index + 19);
+                            }
+                        }
+                        if (shipsBoard.getChildren().indexOf(node) == 3) {
+                            computersSubmarine1.add(index + 20);
+                            computersSubmarine1.add(index + 21);
+                            computersSubmarine1.add(index + 22);
+
+                        } else if (shipsBoard.getChildren().indexOf(node) == 4) {
+                            computersSubmarine2.add(index + 20);
+                            computersSubmarine2.add(index + 21);
+                            computersSubmarine2.add(index + 22);
+
                         }
 
                     } else if (col == 19) {
                         computerOccupiedList.add(index - 20);
                         computerOccupiedList.add(index - 19);
                         computerOccupiedList.add(index - 18);
+
+
                         if (row == 0) {
                             computerOccupiedList.add(index + 3);
                             computerOccupiedList.add(index - 17);
+
+                            if (shipsBoard.getChildren().indexOf(node) == 3) {
+                                computersSubmarine1.add(index + 3);
+                                computersSubmarine1.add(index - 17);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 4) {
+                                computersSubmarine2.add(index + 3);
+                                computersSubmarine2.add(index - 17);
+
+                            }
                         } else if (row == 17) {
                             computerOccupiedList.add(index - 1);
                             computerOccupiedList.add(index - 21);
+
+                            if (shipsBoard.getChildren().indexOf(node) == 3) {
+                                computersSubmarine1.add(index - 1);
+                                computersSubmarine1.add(index - 21);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 4) {
+                                computersSubmarine2.add(index - 1);
+                                computersSubmarine2.add(index - 21);
+                            }
 
                         } else if (row > 0 && row < 17) {
                             computerOccupiedList.add(index + 3);
@@ -609,6 +1244,27 @@ public class Board {
                             computerOccupiedList.add(index - 1);
                             computerOccupiedList.add(index - 21);
 
+                            if (shipsBoard.getChildren().indexOf(node) == 3) {
+                                computersSubmarine1.add(index + 3);
+                                computersSubmarine1.add(index - 17);
+                                computersSubmarine1.add(index - 1);
+                                computersSubmarine1.add(index - 21);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 4) {
+                                computersSubmarine2.add(index + 3);
+                                computersSubmarine2.add(index - 17);
+                                computersSubmarine2.add(index - 1);
+                                computersSubmarine2.add(index - 21);
+
+                            }
+                        }
+                        if (shipsBoard.getChildren().indexOf(node) == 3) {
+                            computersSubmarine1.add(index - 20);
+                            computersSubmarine1.add(index - 19);
+                            computersSubmarine1.add(index - 18);
+                        } else if (shipsBoard.getChildren().indexOf(node) == 4) {
+                            computersSubmarine2.add(index - 20);
+                            computersSubmarine2.add(index - 19);
+                            computersSubmarine2.add(index - 18);
                         }
 
                     } else if (col > 0 && col < 19) {
@@ -624,10 +1280,30 @@ public class Board {
                             computerOccupiedList.add(index + 3);
                             computerOccupiedList.add(index - 17);
                             computerOccupiedList.add(index + 23);
+
+                            if (shipsBoard.getChildren().indexOf(node) == 3) {
+                                computersSubmarine1.add(index + 3);
+                                computersSubmarine1.add(index - 17);
+                                computersSubmarine1.add(index + 23);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 4) {
+                                computersSubmarine2.add(index + 3);
+                                computersSubmarine2.add(index - 17);
+                                computersSubmarine2.add(index + 23);
+                            }
                         } else if (row == 17) {
                             computerOccupiedList.add(index - 1);
                             computerOccupiedList.add(index - 21);
                             computerOccupiedList.add(index + 19);
+
+                            if (shipsBoard.getChildren().indexOf(node) == 3) {
+                                computersSubmarine1.add(index - 1);
+                                computersSubmarine1.add(index - 21);
+                                computersSubmarine1.add(index + 19);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 4) {
+                                computersSubmarine2.add(index - 1);
+                                computersSubmarine2.add(index - 21);
+                                computersSubmarine2.add(index + 19);
+                            }
                         } else if (row > 0 && row < 17) {
                             computerOccupiedList.add(index + 3);
                             computerOccupiedList.add(index - 17);
@@ -636,7 +1312,36 @@ public class Board {
                             computerOccupiedList.add(index - 21);
                             computerOccupiedList.add(index + 19);
 
-
+                            if (shipsBoard.getChildren().indexOf(node) == 3) {
+                                computersSubmarine1.add(index + 3);
+                                computersSubmarine1.add(index - 17);
+                                computersSubmarine1.add(index + 23);
+                                computersSubmarine1.add(index - 1);
+                                computersSubmarine1.add(index - 21);
+                                computersSubmarine1.add(index + 19);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 4) {
+                                computersSubmarine2.add(index + 3);
+                                computersSubmarine2.add(index - 17);
+                                computersSubmarine2.add(index + 23);
+                                computersSubmarine2.add(index - 1);
+                                computersSubmarine2.add(index - 21);
+                                computersSubmarine2.add(index + 19);
+                            }
+                        }
+                        if (shipsBoard.getChildren().indexOf(node) == 3) {
+                            computersSubmarine1.add(index - 20);
+                            computersSubmarine1.add(index + 20);
+                            computersSubmarine1.add(index - 19);
+                            computersSubmarine1.add(index + 21);
+                            computersSubmarine1.add(index - 18);
+                            computersSubmarine1.add(index + 22);
+                        } else if (shipsBoard.getChildren().indexOf(node) == 4) {
+                            computersSubmarine2.add(index - 20);
+                            computersSubmarine2.add(index + 20);
+                            computersSubmarine2.add(index - 19);
+                            computersSubmarine2.add(index + 21);
+                            computersSubmarine2.add(index - 18);
+                            computersSubmarine2.add(index + 22);
                         }
                     }
                 }
@@ -648,7 +1353,7 @@ public class Board {
                     int row = getRow(index);
                     int col = getCol(index);
 
-                    while (computerOccupiedList.contains(index) || computerOccupiedList.contains(index2)|| col>18) {
+                    while (computerOccupiedList.contains(index) || computerOccupiedList.contains(index2) || col > 18) {
                         index = random.nextInt(340);
                         index2 = index + 20;
                         row = getRow(index);
@@ -661,23 +1366,64 @@ public class Board {
                     computerOccupiedList.add(index);
                     computerOccupiedList.add(index2);
 
+                    if (shipsBoard.getChildren().indexOf(node) == 5) {
+                        computersSmallShip1.add(index);
+                        computersSmallShip1.add(index2);
+                    } else if (shipsBoard.getChildren().indexOf(node) == 6) {
+                        computersSmallShip2.add(index);
+                        computersSmallShip2.add(index2);
+                    }
+
                     if (row == 0) {
 
                         computerOccupiedList.add(index + 1);
                         computerOccupiedList.add(index + 21);
 
-
                         if (col == 0) {
                             computerOccupiedList.add(index + 40);
                             computerOccupiedList.add(index + 41);
+
+                            if (shipsBoard.getChildren().indexOf(node) == 5) {
+                                computersSmallShip1.add(index + 40);
+                                computersSmallShip1.add(index + 41);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 6) {
+                                computersSmallShip2.add(index + 40);
+                                computersSmallShip2.add(index + 41);
+                            }
                         } else if (col == 18) {
                             computerOccupiedList.add(index - 20);
                             computerOccupiedList.add(index - 19);
+                            if (shipsBoard.getChildren().indexOf(node) == 5) {
+                                computersSmallShip1.add(index - 20);
+                                computersSmallShip1.add(index - 19);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 6) {
+                                computersSmallShip2.add(index - 20);
+                                computersSmallShip2.add(index - 19);
+                            }
                         } else if (col > 0 && col < 18) {
                             computerOccupiedList.add(index - 19);
                             computerOccupiedList.add(index - 20);
                             computerOccupiedList.add(index + 40);
                             computerOccupiedList.add(index + 41);
+
+                            if (shipsBoard.getChildren().indexOf(node) == 5) {
+                                computersSmallShip1.add(index - 19);
+                                computersSmallShip1.add(index - 20);
+                                computersSmallShip1.add(index + 40);
+                                computersSmallShip1.add(index + 41);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 6) {
+                                computersSmallShip2.add(index - 19);
+                                computersSmallShip2.add(index - 20);
+                                computersSmallShip2.add(index + 40);
+                                computersSmallShip2.add(index + 41);
+                            }
+                        }
+                        if (shipsBoard.getChildren().indexOf(node) == 5) {
+                            computersSmallShip1.add(index + 1);
+                            computersSmallShip1.add(index + 21);
+                        } else if (shipsBoard.getChildren().indexOf(node) == 6) {
+                            computersSmallShip2.add(index + 1);
+                            computersSmallShip2.add(index + 21);
                         }
 
                     } else if (row == 19) {
@@ -687,16 +1433,49 @@ public class Board {
                         if (col == 0) {
                             computerOccupiedList.add(index + 40);
                             computerOccupiedList.add(index + 39);
+
+                            if (shipsBoard.getChildren().indexOf(node) == 5) {
+                                computersSmallShip1.add(index + 40);
+                                computersSmallShip1.add(index + 39);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 6) {
+                                computersSmallShip2.add(index + 40);
+                                computersSmallShip2.add(index + 39);
+                            }
                         } else if (col == 18) {
                             computerOccupiedList.add(index - 21);
                             computerOccupiedList.add(index - 20);
 
+                            if (shipsBoard.getChildren().indexOf(node) == 5) {
+                                computersSmallShip1.add(index - 21);
+                                computersSmallShip1.add(index - 20);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 6) {
+                                computersSmallShip2.add(index - 21);
+                                computersSmallShip2.add(index - 20);
+                            }
                         } else if (col > 0 && col < 18) {
                             computerOccupiedList.add(index + 40);
                             computerOccupiedList.add(index + 39);
                             computerOccupiedList.add(index - 21);
                             computerOccupiedList.add(index - 20);
 
+                            if (shipsBoard.getChildren().indexOf(node) == 5) {
+                                computersSmallShip1.add(index + 40);
+                                computersSmallShip1.add(index + 39);
+                                computersSmallShip1.add(index - 21);
+                                computersSmallShip1.add(index - 20);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 6) {
+                                computersSmallShip2.add(index + 40);
+                                computersSmallShip2.add(index + 39);
+                                computersSmallShip2.add(index - 21);
+                                computersSmallShip2.add(index - 20);
+                            }
+                        }
+                        if (shipsBoard.getChildren().indexOf(node) == 5) {
+                            computersSmallShip1.add(index - 1);
+                            computersSmallShip1.add(index + 19);
+                        } else if (shipsBoard.getChildren().indexOf(node) == 6) {
+                            computersSmallShip2.add(index - 1);
+                            computersSmallShip2.add(index + 19);
                         }
 
                     } else if (row > 0 && row < 19) {
@@ -705,15 +1484,33 @@ public class Board {
                         computerOccupiedList.add(index + 19);
                         computerOccupiedList.add(index + 21);
 
-
                         if (col == 0) {
                             computerOccupiedList.add(index + 39);
                             computerOccupiedList.add(index + 40);
                             computerOccupiedList.add(index + 41);
+                            if (shipsBoard.getChildren().indexOf(node) == 5) {
+                                computersSmallShip1.add(index + 39);
+                                computersSmallShip1.add(index + 40);
+                                computersSmallShip1.add(index + 41);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 6) {
+                                computersSmallShip2.add(index + 39);
+                                computersSmallShip2.add(index + 40);
+                                computersSmallShip2.add(index + 41);
+                            }
                         } else if (col == 18) {
                             computerOccupiedList.add(index - 19);
                             computerOccupiedList.add(index - 20);
                             computerOccupiedList.add(index - 21);
+
+                            if (shipsBoard.getChildren().indexOf(node) == 5) {
+                                computersSmallShip1.add(index - 19);
+                                computersSmallShip1.add(index - 20);
+                                computersSmallShip1.add(index - 21);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 6) {
+                                computersSmallShip2.add(index - 19);
+                                computersSmallShip2.add(index - 20);
+                                computersSmallShip2.add(index - 21);
+                            }
                         } else if (col > 0 && col < 18) {
                             computerOccupiedList.add(index + 39);
                             computerOccupiedList.add(index + 40);
@@ -721,8 +1518,36 @@ public class Board {
                             computerOccupiedList.add(index - 19);
                             computerOccupiedList.add(index - 20);
                             computerOccupiedList.add(index - 21);
+
+                            if (shipsBoard.getChildren().indexOf(node) == 5) {
+                                computersSmallShip1.add(index + 39);
+                                computersSmallShip1.add(index + 40);
+                                computersSmallShip1.add(index + 41);
+                                computersSmallShip1.add(index - 19);
+                                computersSmallShip1.add(index - 20);
+                                computersSmallShip1.add(index - 21);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 6) {
+                                computersSmallShip2.add(index + 39);
+                                computersSmallShip2.add(index + 40);
+                                computersSmallShip2.add(index + 41);
+                                computersSmallShip2.add(index - 19);
+                                computersSmallShip2.add(index - 20);
+                                computersSmallShip2.add(index - 21);
+                            }
+                        }
+                        if (shipsBoard.getChildren().indexOf(node) == 5) {
+                            computersSmallShip1.add(index - 1);
+                            computersSmallShip1.add(index + 1);
+                            computersSmallShip1.add(index + 19);
+                            computersSmallShip1.add(index + 21);
+                        } else if (shipsBoard.getChildren().indexOf(node) == 6) {
+                            computersSmallShip2.add(index - 1);
+                            computersSmallShip2.add(index + 1);
+                            computersSmallShip2.add(index + 19);
+                            computersSmallShip2.add(index + 21);
                         }
                     }
+
 
                 } else if (rotate == 90) {
                     index = random.nextInt(399);
@@ -730,7 +1555,7 @@ public class Board {
                     int row = getRow(index);
                     int col = getCol(index);
 
-                    while (computerOccupiedList.contains(index) || computerOccupiedList.contains(index2)||row>18) {
+                    while (computerOccupiedList.contains(index) || computerOccupiedList.contains(index2) || row > 18) {
                         index = random.nextInt(340);
                         index2 = index + 1;
                         row = getRow(index);
@@ -745,35 +1570,96 @@ public class Board {
                     computerOccupiedList.add(index);
                     computerOccupiedList.add(index2);
 
+                    if (shipsBoard.getChildren().indexOf(node) == 5) {
+                        computersSmallShip1.add(index);
+                        computersSmallShip1.add(index2);
+                    } else if (shipsBoard.getChildren().indexOf(node) == 6) {
+                        computersSmallShip2.add(index);
+                        computersSmallShip2.add(index2);
+                    }
+
                     if (col == 0) {
 
                         computerOccupiedList.add(index + 20);
                         computerOccupiedList.add(index + 21);
 
-
                         if (row == 0) {
                             computerOccupiedList.add(index + 2);
                             computerOccupiedList.add(index + 22);
+
+                            if (shipsBoard.getChildren().indexOf(node) == 5) {
+                                computersSmallShip1.add(index + 2);
+                                computersSmallShip1.add(index + 22);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 6) {
+                                computersSmallShip2.add(index + 2);
+                                computersSmallShip2.add(index + 22);
+                            }
                         } else if (row == 18) {
                             computerOccupiedList.add(index - 1);
                             computerOccupiedList.add(index + 19);
+
+                            if (shipsBoard.getChildren().indexOf(node) == 5) {
+                                computersSmallShip1.add(index - 1);
+                                computersSmallShip1.add(index + 19);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 6) {
+                                computersSmallShip2.add(index - 1);
+                                computersSmallShip2.add(index + 19);
+
+                            }
                         } else if (row > 0 && row < 18) {
                             computerOccupiedList.add(index + 2);
                             computerOccupiedList.add(index + 22);
                             computerOccupiedList.add(index - 1);
                             computerOccupiedList.add(index + 19);
+
+                            if (shipsBoard.getChildren().indexOf(node) == 5) {
+                                computersSmallShip1.add(index + 2);
+                                computersSmallShip1.add(index + 22);
+                                computersSmallShip1.add(index - 1);
+                                computersSmallShip1.add(index + 19);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 6) {
+                                computersSmallShip2.add(index + 2);
+                                computersSmallShip2.add(index + 22);
+                                computersSmallShip2.add(index - 1);
+                                computersSmallShip2.add(index + 19);
+                            }
+                        }
+                        if (shipsBoard.getChildren().indexOf(node) == 5) {
+                            computersSmallShip1.add(index + 20);
+                            computersSmallShip1.add(index + 21);
+                        } else if (shipsBoard.getChildren().indexOf(node) == 6) {
+                            computersSmallShip2.add(index + 20);
+                            computersSmallShip2.add(index + 21);
                         }
 
                     } else if (col == 19) {
                         computerOccupiedList.add(index - 20);
                         computerOccupiedList.add(index - 19);
 
+
+
                         if (row == 0) {
                             computerOccupiedList.add(index + 2);
                             computerOccupiedList.add(index - 18);
+
+                            if (shipsBoard.getChildren().indexOf(node) == 5) {
+                                computersSmallShip1.add(index + 2);
+                                computersSmallShip1.add(index - 18);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 6) {
+                                computersSmallShip2.add(index + 2);
+                                computersSmallShip2.add(index - 18);
+                            }
                         } else if (row == 18) {
                             computerOccupiedList.add(index - 1);
                             computerOccupiedList.add(index - 21);
+
+                            if (shipsBoard.getChildren().indexOf(node) == 5) {
+                                computersSmallShip1.add(index - 1);
+                                computersSmallShip1.add(index - 23);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 6) {
+                                computersSmallShip2.add(index - 1);
+                                computersSmallShip2.add(index - 21);
+                            }
 
                         } else if (row > 0 && row < 18) {
                             computerOccupiedList.add(index + 2);
@@ -781,6 +1667,24 @@ public class Board {
                             computerOccupiedList.add(index - 1);
                             computerOccupiedList.add(index - 21);
 
+                            if (shipsBoard.getChildren().indexOf(node) == 5) {
+                                computersSmallShip1.add(index + 2);
+                                computersSmallShip1.add(index - 18);
+                                computersSmallShip1.add(index - 1);
+                                computersSmallShip1.add(index - 21);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 6) {
+                                computersSmallShip2.add(index + 2);
+                                computersSmallShip2.add(index - 18);
+                                computersSmallShip2.add(index - 1);
+                                computersSmallShip2.add(index - 21);
+                            }
+                        }
+                        if (shipsBoard.getChildren().indexOf(node) == 5) {
+                            computersSmallShip1.add(index - 20);
+                            computersSmallShip1.add(index - 19);
+                        } else if (shipsBoard.getChildren().indexOf(node) == 6) {
+                            computersSmallShip2.add(index - 20);
+                            computersSmallShip2.add(index - 19);
                         }
 
                     } else if (col > 0 && col < 19) {
@@ -794,10 +1698,30 @@ public class Board {
                             computerOccupiedList.add(index + 2);
                             computerOccupiedList.add(index - 18);
                             computerOccupiedList.add(index + 22);
+
+                            if (shipsBoard.getChildren().indexOf(node) == 5) {
+                                computersSmallShip1.add(index + 2);
+                                computersSmallShip1.add(index - 18);
+                                computersSmallShip1.add(index + 22);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 6) {
+                                computersSmallShip2.add(index + 2);
+                                computersSmallShip2.add(index - 18);
+                                computersSmallShip2.add(index + 22);
+                            }
                         } else if (row == 18) {
                             computerOccupiedList.add(index - 1);
                             computerOccupiedList.add(index - 21);
                             computerOccupiedList.add(index + 19);
+
+                            if (shipsBoard.getChildren().indexOf(node) == 5) {
+                                computersSmallShip1.add(index - 1);
+                                computersSmallShip1.add(index - 21);
+                                computersSmallShip1.add(index + 19);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 6) {
+                                computersSmallShip2.add(index - 1);
+                                computersSmallShip2.add(index - 21);
+                                computersSmallShip2.add(index + 19);
+                            }
                         } else if (row > 0 && row < 18) {
                             computerOccupiedList.add(index + 2);
                             computerOccupiedList.add(index - 18);
@@ -806,11 +1730,36 @@ public class Board {
                             computerOccupiedList.add(index - 21);
                             computerOccupiedList.add(index + 19);
 
+                            if (shipsBoard.getChildren().indexOf(node) == 5) {
+                                computersSmallShip1.add(index + 2);
+                                computersSmallShip1.add(index - 18);
+                                computersSmallShip1.add(index + 22);
+                                computersSmallShip1.add(index - 1);
+                                computersSmallShip1.add(index - 21);
+                                computersSmallShip1.add(index + 19);
+                            } else if (shipsBoard.getChildren().indexOf(node) == 6) {
+                                computersSmallShip2.add(index + 2);
+                                computersSmallShip2.add(index - 18);
+                                computersSmallShip2.add(index + 22);
+                                computersSmallShip2.add(index - 1);
+                                computersSmallShip2.add(index - 21);
+                                computersSmallShip2.add(index + 19);
+                            }
+                        }
+                        if (shipsBoard.getChildren().indexOf(node) == 5) {
+                            computersSmallShip1.add(index - 20);
+                            computersSmallShip1.add(index + 20);
+                            computersSmallShip1.add(index + 21);
+                            computersSmallShip1.add(index - 19);
+                        } else if (shipsBoard.getChildren().indexOf(node) == 6) {
+                            computersSmallShip2.add(index - 20);
+                            computersSmallShip2.add(index + 20);
+                            computersSmallShip2.add(index + 21);
+                            computersSmallShip2.add(index - 19);
 
                         }
                     }
                 }
-
             }
 
         }
@@ -826,11 +1775,11 @@ public class Board {
 
         int row = -1;
         if (index == 19 || index == 39 || index == 59 || index == 79 || index == 99 || index == 119 || index == 139 || index == 159 || index == 179 || index == 199 || index == 219
-                || index == 239 || index == 259|| index == 279 || index == 299|| index == 319 || index == 339 || index == 359 || index == 379 || index == 399) {
+                || index == 239 || index == 259 || index == 279 || index == 299 || index == 319 || index == 339 || index == 359 || index == 379 || index == 399) {
             row = 19;
 
         } else if (index == 18 || index == 38 || index == 58 || index == 78 || index == 98 || index == 118 || index == 138 || index == 158 || index == 178 || index == 198 || index == 218
-                || index == 238 || index == 258 || index == 278 || index == 298|| index == 318 || index == 338|| index == 358 || index == 378 || index == 398) {
+                || index == 238 || index == 258 || index == 278 || index == 298 || index == 318 || index == 338 || index == 358 || index == 378 || index == 398) {
             row = 18;
         } else if (index == 17 || index == 37 || index == 57 || index == 77 || index == 97 || index == 117 || index == 137 || index == 157 || index == 177 || index == 197 || index == 217
                 || index == 237 || index == 257 || index == 277 || index == 297 || index == 317 || index == 337 || index == 357 || index == 377 || index == 397) {
@@ -838,17 +1787,17 @@ public class Board {
         } else if (index == 16 || index == 36 || index == 56 || index == 76 || index == 96 || index == 116 || index == 136 || index == 156 || index == 176 || index == 196 || index == 216
                 || index == 236 || index == 256 || index == 276 || index == 296 || index == 316 || index == 336 || index == 356 || index == 376 || index == 396) {
             row = 16;
-        } else if (index == 15 || index == 35 || index == 55|| index == 75 || index == 95 || index == 115 || index == 135 || index == 155 || index == 175 || index == 195 || index == 215
-                || index == 235|| index == 255 || index == 275 || index == 295 || index == 315 || index == 335|| index == 355 || index == 375 || index == 395) {
+        } else if (index == 15 || index == 35 || index == 55 || index == 75 || index == 95 || index == 115 || index == 135 || index == 155 || index == 175 || index == 195 || index == 215
+                || index == 235 || index == 255 || index == 275 || index == 295 || index == 315 || index == 335 || index == 355 || index == 375 || index == 395) {
             row = 15;
         } else if (index == 14 || index == 34 || index == 54 || index == 74 || index == 94 || index == 114 || index == 134 || index == 154 || index == 174 || index == 194 || index == 214
                 || index == 234 || index == 254 || index == 274 || index == 294 || index == 314 || index == 334 || index == 354 || index == 374 || index == 394) {
             row = 14;
-        } else if (index == 13 || index == 33|| index == 53 || index == 73 || index == 93 || index == 113 || index == 133 || index == 153 || index == 173 || index == 193 || index == 213
+        } else if (index == 13 || index == 33 || index == 53 || index == 73 || index == 93 || index == 113 || index == 133 || index == 153 || index == 173 || index == 193 || index == 213
                 || index == 233 || index == 253 || index == 273 || index == 293 || index == 313 || index == 333 || index == 353 || index == 373 || index == 393) {
             row = 13;
         } else if (index == 12 || index == 32 || index == 52 || index == 72 || index == 92 || index == 112 || index == 132 || index == 152 || index == 172 || index == 192 || index == 212
-                || index == 232 || index == 252 || index == 272 || index == 292 || index == 312 || index == 332 || index == 352 || index == 372 || index == 392){
+                || index == 232 || index == 252 || index == 272 || index == 292 || index == 312 || index == 332 || index == 352 || index == 372 || index == 392) {
             row = 12;
         } else if (index == 11 || index == 31 || index == 51 || index == 71 || index == 91 || index == 111 || index == 131 || index == 151 || index == 171 || index == 191 || index == 211
                 || index == 231 || index == 251 || index == 271 || index == 291 || index == 311 || index == 331 || index == 351 || index == 371 || index == 391) {

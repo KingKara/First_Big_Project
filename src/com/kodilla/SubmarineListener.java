@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class SubmarineListener {
     public static ArrayList<Integer> submarineInstall(GridPane shipsBoard, GridPane userBoard, int number,
-                                                      ArrayList<Integer> occupiedCells, ArrayList<Integer> shipsList) {
+                                                      ArrayList<Integer> occupiedCells, ArrayList<Integer> shipsList, ArrayList<Integer> usersSubmarine) {
         Node shipToMove = shipsBoard.getChildren().get(number);
         ArrayList<Integer> submarineCells = new ArrayList<>();
         ArrayList<Integer> submarineList = new ArrayList<>();
@@ -99,37 +99,44 @@ public class SubmarineListener {
             int col = (int) localX / 25;
             int row = (int) localY / 25;
             int index1 = row + (col * 20);
-            Node node = userBoard.getChildren().get(index1);
+            if (index1>=0 && index1<400 && event.getSceneY()<575 ) {
+                Node node = userBoard.getChildren().get(index1);
 
-            if (shipToMove.getRotate() == 0) {
+                if (shipToMove.getRotate() == 0) {
 
-                if (occupiedCells.contains(index1) || occupiedCells.contains(index1 + 20) || occupiedCells.contains(index1 + 40) || col > 16) {
-                    shipToMove.setTranslateY(500);
-                } else {
-                    if (number == 3) {
-                        shipToMove.setTranslateX(node.getLayoutX() + 170);
-                        shipToMove.setTranslateY(node.getLayoutY() - 150);
-                    } else if (number == 4) {
-                        shipToMove.setTranslateX(node.getLayoutX() + 170);
-                        shipToMove.setTranslateY(node.getLayoutY() - 200);
+                    if (occupiedCells.contains(index1) || occupiedCells.contains(index1 + 20) || occupiedCells.contains(index1 + 40) || col > 16) {
+                        shipToMove.setTranslateY(0);
+                        shipToMove.setTranslateX(0);
+                    } else {
+                        if (number == 3) {
+                            shipToMove.setTranslateX(node.getLayoutX() + 170);
+                            shipToMove.setTranslateY(node.getLayoutY() - 150);
+                        } else if (number == 4) {
+                            shipToMove.setTranslateX(node.getLayoutX() + 170);
+                            shipToMove.setTranslateY(node.getLayoutY() - 200);
+                        }
+                        installListener.setShipZeroRotation(index1, submarineList, submarineCells, col, row, 3);
                     }
-                    installListener.setShipZeroRotation(index1, submarineList, submarineCells, col, row, 3);
-                }
 
-            } else if (shipToMove.getRotate() == 90) {
+                } else if (shipToMove.getRotate() == 90) {
 
-                if (occupiedCells.contains(index1) || occupiedCells.contains(index1 + 1) || occupiedCells.contains(index1 + 2) || row > 16) {
-                    shipToMove.setTranslateY(400);
-                } else {
-                    if (number == 3) {
-                        shipToMove.setTranslateX(node.getLayoutX() + 155);
-                        shipToMove.setTranslateY(node.getLayoutY() - 120);
-                    } else if (number == 4) {
-                        shipToMove.setTranslateX(node.getLayoutX() + 155);
-                        shipToMove.setTranslateY(node.getLayoutY() - 170);
+                    if (occupiedCells.contains(index1) || occupiedCells.contains(index1 + 1) || occupiedCells.contains(index1 + 2) || row > 16) {
+                        shipToMove.setTranslateY(0);
+                        shipToMove.setTranslateX(0);
+                    } else {
+                        if (number == 3) {
+                            shipToMove.setTranslateX(node.getLayoutX() + 155);
+                            shipToMove.setTranslateY(node.getLayoutY() - 120);
+                        } else if (number == 4) {
+                            shipToMove.setTranslateX(node.getLayoutX() + 155);
+                            shipToMove.setTranslateY(node.getLayoutY() - 170);
+                        }
+                        installListener.setRotatedShip(index1, submarineList, submarineCells, col, row, 3);
                     }
-                    installListener.setRotatedShip(index1, submarineList, submarineCells, col, row, 3);
                 }
+            } else {
+                shipToMove.setTranslateY(0);
+                shipToMove.setTranslateX(0);
             }
 
 
@@ -147,6 +154,7 @@ public class SubmarineListener {
 
             }
             occupiedCells.addAll(submarineCells);
+            usersSubmarine.addAll(submarineCells);
             shipsList.addAll(submarineList);
         });
 

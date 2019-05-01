@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class SmallShipListener {
     public static ArrayList<Integer> smallShipInstall(GridPane shipsBoard, GridPane userBoard, int number,
-                                                      ArrayList<Integer> occupiedCells, ArrayList<Integer> shipsList) {
+                                                      ArrayList<Integer> occupiedCells, ArrayList<Integer> shipsList, ArrayList<Integer> usersSmallShip) {
         Node shipToMove = shipsBoard.getChildren().get(number);
         ArrayList<Integer> smallShipCells = new ArrayList<>();
         ArrayList<Integer> smallShipList = new ArrayList<>();
@@ -22,44 +22,44 @@ public class SmallShipListener {
         Color smallShip2Color = Color.rgb(255, 255, 6);
 
         shipsBoard.setOnMouseClicked(event -> {
-            if (number==5) {
-            if (event.getButton() == MouseButton.SECONDARY) {
-                Rotate rotate = new Rotate();
-                rotate.setPivotX(150 / 2);
-                rotate.setPivotY(25 / 2);
-                if (shipToMove.getRotate() == 0) {
-                    shipToMove.setRotate(90);
-                    shipToMove.setTranslateX(event.getSceneX() - 60);
-                    shipToMove.setTranslateY(event.getSceneY() - 290);
+            if (number == 5) {
+                if (event.getButton() == MouseButton.SECONDARY) {
+                    Rotate rotate = new Rotate();
+                    rotate.setPivotX(150 / 2);
+                    rotate.setPivotY(25 / 2);
+                    if (shipToMove.getRotate() == 0) {
+                        shipToMove.setRotate(90);
+                        shipToMove.setTranslateX(event.getSceneX() - 60);
+                        shipToMove.setTranslateY(event.getSceneY() - 290);
 
-                } else {
-                    shipToMove.setRotate(0);
-                    shipToMove.setTranslateX(event.getSceneX() - 50);
-                    shipToMove.setTranslateY(event.getSceneY() - 300);
+                    } else {
+                        shipToMove.setRotate(0);
+                        shipToMove.setTranslateX(event.getSceneX() - 50);
+                        shipToMove.setTranslateY(event.getSceneY() - 300);
+                    }
+
+                    installListener.resetColor(userBoard, smallShip1Color, occupiedCells, smallShipCells);
                 }
+            } else if (number == 6) {
+                if (event.getButton() == MouseButton.SECONDARY) {
+                    Rotate rotate = new Rotate();
+                    rotate.setPivotX(150 / 2);
+                    rotate.setPivotY(25 / 2);
+                    if (shipToMove.getRotate() == 0) {
+                        shipToMove.setRotate(90);
+                        shipToMove.setTranslateX(event.getSceneX() - 60);
+                        shipToMove.setTranslateY(event.getSceneY() - 340);
 
-               installListener.resetColor(userBoard,smallShip1Color,occupiedCells,smallShipCells);
-            }
-        } else if (number==6) {
-            if (event.getButton() == MouseButton.SECONDARY) {
-                Rotate rotate = new Rotate();
-                rotate.setPivotX(150 / 2);
-                rotate.setPivotY(25 / 2);
-                if (shipToMove.getRotate() == 0) {
-                    shipToMove.setRotate(90);
-                    shipToMove.setTranslateX(event.getSceneX() - 60);
-                    shipToMove.setTranslateY(event.getSceneY() - 340);
+                    } else {
+                        shipToMove.setRotate(0);
+                        shipToMove.setTranslateX(event.getSceneX() - 50);
+                        shipToMove.setTranslateY(event.getSceneY() - 350);
+                    }
 
-                } else {
-                    shipToMove.setRotate(0);
-                    shipToMove.setTranslateX(event.getSceneX() - 50);
-                    shipToMove.setTranslateY(event.getSceneY() - 350);
+                    installListener.resetColor(userBoard, smallShip2Color, occupiedCells, smallShipCells);
                 }
-
-                installListener.resetColor(userBoard,smallShip2Color,occupiedCells,smallShipCells);
             }
-        }
-    });
+        });
 
         shipToMove.setOnMouseDragged(event -> {
             if (shipToMove.getRotate() == 0) {
@@ -72,7 +72,7 @@ public class SmallShipListener {
 
             if (number == 5) {
 
-                installListener.resetColor(userBoard,smallShip1Color,occupiedCells,smallShipCells);
+                installListener.resetColor(userBoard, smallShip1Color, occupiedCells, smallShipCells);
 
 
             } else if (number == 6) {
@@ -91,38 +91,45 @@ public class SmallShipListener {
             int col = (int) localX / 25;
             int row = (int) localY / 25;
             int index1 = row + (col * 20);
-            Node node = userBoard.getChildren().get(index1);
+            if (index1 >= 0 && index1 < 400 && event.getSceneY() < 575) {
+                Node node = userBoard.getChildren().get(index1);
 
-            if (shipToMove.getRotate() == 0) {
+                if (shipToMove.getRotate() == 0) {
 
-                if (occupiedCells.contains(index1) || occupiedCells.contains(index1 + 20)|| col>17) {
-                    shipToMove.setTranslateY(500);
-                } else {
-                    if (number == 5) {
-                        shipToMove.setTranslateX(node.getLayoutX() + 170);
-                        shipToMove.setTranslateY(node.getLayoutY() - 250);
-                    } else if (number == 6) {
-                        shipToMove.setTranslateX(node.getLayoutX() + 170);
-                        shipToMove.setTranslateY(node.getLayoutY() - 300);
-                    }
-                    installListener.setShipZeroRotation(index1, smallShipList, smallShipCells, col, row, 2);
-                }
-
-            } else if (shipToMove.getRotate() == 90) {
-
-                if (occupiedCells.contains(index1) || occupiedCells.contains(index1 + 1)||row>17) {
-                    shipToMove.setTranslateY(400);
-                } else {
-                    if (number == 5) {
-                        shipToMove.setTranslateX(node.getLayoutX() + 170);
-                        shipToMove.setTranslateY(node.getLayoutY() - 240);
-                    } else if (number == 6) {
-                        shipToMove.setTranslateX(node.getLayoutX() + 170);
-                        shipToMove.setTranslateY(node.getLayoutY() - 285);
+                    if (occupiedCells.contains(index1) || occupiedCells.contains(index1 + 20) || col > 17) {
+                        shipToMove.setTranslateY(0);
+                        shipToMove.setTranslateX(0);
+                    } else {
+                        if (number == 5) {
+                            shipToMove.setTranslateX(node.getLayoutX() + 170);
+                            shipToMove.setTranslateY(node.getLayoutY() - 250);
+                        } else if (number == 6) {
+                            shipToMove.setTranslateX(node.getLayoutX() + 170);
+                            shipToMove.setTranslateY(node.getLayoutY() - 300);
+                        }
+                        installListener.setShipZeroRotation(index1, smallShipList, smallShipCells, col, row, 2);
                     }
 
-                    installListener.setRotatedShip(index1,smallShipList,smallShipCells,col,row,2);
+                } else if (shipToMove.getRotate() == 90) {
+
+                    if (occupiedCells.contains(index1) || occupiedCells.contains(index1 + 1) || row > 17) {
+                        shipToMove.setTranslateY(0);
+                        shipToMove.setTranslateX(0);
+                    } else {
+                        if (number == 5) {
+                            shipToMove.setTranslateX(node.getLayoutX() + 170);
+                            shipToMove.setTranslateY(node.getLayoutY() - 240);
+                        } else if (number == 6) {
+                            shipToMove.setTranslateX(node.getLayoutX() + 170);
+                            shipToMove.setTranslateY(node.getLayoutY() - 285);
+                        }
+
+                        installListener.setRotatedShip(index1, smallShipList, smallShipCells, col, row, 2);
+                    }
                 }
+            } else {
+                shipToMove.setTranslateY(0);
+                shipToMove.setTranslateX(0);
             }
 
 
@@ -140,6 +147,7 @@ public class SmallShipListener {
 
             }
             occupiedCells.addAll(smallShipCells);
+            usersSmallShip.addAll(smallShipCells);
             shipsList.addAll(smallShipList);
         });
 

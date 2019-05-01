@@ -1,3 +1,6 @@
 Liczba przegranych 0
 Liczba przegranych 1
 Liczba przegranych 2
+Liczba przegranych 3
+Liczba przegranych 4
+Liczba przegranych 5
